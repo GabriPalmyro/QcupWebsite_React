@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+import './index.css';
+import './assets/font-awesome/css/font-awesome.css'
 
 ReactDOM.render(
   <React.StrictMode>
