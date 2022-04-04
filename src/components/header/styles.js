@@ -18,15 +18,13 @@ export const SystemLogo = styled.div`
     -ms-flex: 1 0 auto;
     color: #FFF;
     text-align: center;
-    font-family: 'Niconne';
+    font-family: 'Gotham';
     padding: 0 15px;
     font-size: 26px;
     font-weight: 400;
     line-height: 50px;
 
-    -webkit-transition: background-color 0.3s ease;
-    -o-transition: background-color 0.3s ease;
-    transition: background-color 0.3s ease;
+    transition: transform 80ms ease-in;
 
     &:focus {
         color: #FFF;
@@ -45,18 +43,19 @@ export const SystemLogo = styled.div`
 
 `
 
-export const Toggle = styled.div`
+export const Toggle = styled.button`
     padding: 0 15px;
     font-family: fontAwesome;
+    border: none;
+    background-color: transparent;
     color: #FFF;
     line-height: 2.4;
-    -webkit-transition: background-color 0.3s ease;
-    -o-transition: background-color 0.3s ease;
-    transition: background-color 0.3s ease;
+    transition: transform 80ms ease-in;
 
     &:hover, &:focus {
         color: #e2e2e2;
         text-decoration: none;
+        transform: scale(1.1);
     }
 
     &:before {

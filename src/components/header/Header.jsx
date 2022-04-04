@@ -1,14 +1,14 @@
 import React, { Fragment } from "react"
 import { HeaderContainer, SystemLogo, Toggle, Profile, Logon, UserName, Logout} from "./styles"
 
-const Header = () => {
+const Header = ({ onClickToggle }) => {
     return (
         <Fragment>
             <HeaderContainer>
                 <SystemLogo>Sistema</SystemLogo>
-                <Toggle>
-
-                </Toggle>
+                <Toggle onClick={() => {
+                    onClickToggle()
+                }} />
                 <Profile>
                     <Logon>Nome: </Logon>
                     <UserName>Gabriel Palmyro</UserName>
