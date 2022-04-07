@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import Content from '../content/Content'
 import Header from '../header/Header'
 import Sidebar from '../sidebar/SideBar'
 
@@ -13,16 +14,8 @@ const Layout = () => {
                     setSideBarState(!sideBarState)
                 }} />
             </header>
-            <aside>
-                <div>
-                    {
-                        sideBarState ? (<Sidebar sideBarState={sideBarState} />
-                        ) : (<div />)
-                    }
-                </div>
-            </aside>
             <main>
-                <h1>Content</h1>
+                <Content/>
             </main>
         </Fragment>
     )

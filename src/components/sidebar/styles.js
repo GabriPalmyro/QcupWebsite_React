@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const SideBarNav = styled.aside`
     background: #15171c;
-    width: 250px;
+    width: 22%;
     display: flex;
     justify-content: center;
     position: fixed;
@@ -16,7 +16,7 @@ export const SideBarNav = styled.aside`
     z-index: 10;
 
     @media(max-width: 768px){
-        
+       width: 100%;
     }
 
 `
@@ -33,11 +33,11 @@ export const SideBarLink = styled(Link)`
     text-decoration: none;
     font-size: 18px;
     padding-right: 1.5rem;
-    transition: 300ms ease;
+    transition: 200ms ease;
 
     &:hover{
         background: #252831;
-        border-left: 3px solid rgba(255,0,0,0.6);
+        border-left: 4px solid rgba(255,0,0,0.6);
         cursor: pointer;
     }
 `
@@ -55,7 +55,7 @@ export const DropdownLink = styled(Link)`
     text-decoration: none;
     color: #F5F5F5;
     font-size: 18px;
-    transition: 300ms ease;
+    transition: 200ms ease;
 
     &:hover{
         background: rgba(255,50,0,0.4);
