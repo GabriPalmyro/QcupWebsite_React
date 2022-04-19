@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { LeagueLabel } from "./styles"
 
-
-const LeagueLink = ({ label, path }) => {
+const LeagueLink = ({ label }) => {
 
     return (
-        <>
-            <LeagueLabel>{label}</LeagueLabel>
-        </>
+        <LeagueLabel>{label}</LeagueLabel>
     )
 }
 

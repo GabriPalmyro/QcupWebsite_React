@@ -1,14 +1,11 @@
 import React from 'react';
-import Layout from './components/layouts/Layout';
-import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './router/Routes';
 
 function App() {
   return (
-    <div>
-      <Router>
-        <Layout />
-      </Router>
-    </div>
+    <React.Fragment>
+      <Routes />
+    </React.Fragment>
   );
 }
 

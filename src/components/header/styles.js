@@ -3,14 +3,28 @@ import styled from "styled-components"
 export const HeaderContainer = styled.div`
     background-color: #1A1818;
     color: #FFF;
-    /* position: fixed;
-    left: 0;
-    right: 0;
-    top: 0; */
+    height: 85px;
     display: flex;
     align-items: center;
-    /* z-index: 99; */
-    padding: 8px;
+    justify-content: space-between;
+    padding: 0.2rem calc((100vw - 1000px) / 7);
+    z-index: 12;
+
+
+    link {
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    a {
+        color: #FFF;
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 767px) {
+        padding: 0 auto;
+        justify-content: space-around;
+    }
 `
 
 export const SystemLogo = styled.img`   
@@ -18,7 +32,7 @@ export const SystemLogo = styled.img`
     flex: 0 0 auto;
     -webkit-box-flex: 0;
     padding: 10px 0px 0px 30px;
-    height: 70px;
+    height: 60px;
     object-fit: contain;
 
     transition: transform 80ms ease-in;
@@ -48,12 +62,12 @@ export const Leagues = styled.div`
     width: 70%;
     justify-content: center;
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 767px) {
         display: none;
     }
 `
 export const LeagueLabel = styled.h2`
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     font-weight: 300;
     margin: 0 2%;
 
@@ -123,4 +137,32 @@ export const Logon = styled.span`
 export const Logout = styled.div`
     color: #212529;
     text-decoration: none;
+`
+
+export const Login = styled.a`
+    color: #212529;
+    text-decoration: none;
+    transition: all 100ms ease-in;
+
+    &:hover, &:focus {
+        color: #C2C2C2;
+        text-decoration: none;
+        transform: translateY(5);
+        cursor: pointer;
+    }
+
+`
+
+export const Register = styled.a`
+    color: #212529;
+    text-decoration: none;
+
+    transition: all 100ms ease-in;
+
+    &:hover, &:focus {
+        color: #C2C2C2;
+        text-decoration: none;
+        transform: translateY(5);
+        cursor: pointer;
+    }
 `
