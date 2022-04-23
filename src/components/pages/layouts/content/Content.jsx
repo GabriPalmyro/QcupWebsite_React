@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useContext, useState } from "react"
 import { MainContent, Banner, GamesMain, GamesOfTheDay, Leagues, League, LeagueLogo } from "./styles"
 import banner from '../../../../assets/img/banner_youtube.jpg'
 import lolLogo from '../../../../assets/img/lol_logo.png'
@@ -8,23 +8,19 @@ import r6Logo from '../../../../assets/img/r62_logo.png'
 
 import api from '../../../../config/banco';
 
-
 function Content() {
 
-    const [times, setTimes] = useState([])
+    // const [times, setTimes] = useState([])
+
+    // async function registeredTimes() {
+    //     const response = await api.get('api/times')
+    //     setTimes(response.data)
+    //     console.log(response.data)
+    // }
 
     useEffect(() => {
-        api
-            .get("/api/times")
-            .then((response) => {
-                setTimes(response.data)
-                console.log(response.data)
-            })
-            .catch((err) => {
-                console.error("ops! ocorreu um erro" + err);
-            });
-    }, []);
-
+        // registeredTimes()
+    }, [])
 
     return (
         <>
@@ -33,36 +29,14 @@ function Content() {
             </MainContent>
             <GamesMain>
                 <GamesOfTheDay>
-                    <h2>TIMES</h2>
-                    <table className="table table-striped table-bordered table-hover">
-                        <thead>
-                            <tr style={{ color: 'white' }}>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Logo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                times &&
-                                times.map(time => (
-                                    <tr key={time.id}>
-                                        <th style={{ color: '#FFF' }}>{time.nome}</th>
-                                        <th style={{ color: '#FFF' }}>{time.email}</th>
-                                        <th><img src={time.logo} alt={"logo" + time.id} width={150}/></th>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
                 </GamesOfTheDay>
                 <Leagues>
                     <h2>LIGAS</h2>
                     <br />
-                    <League to={'r6'}><LeagueLogo src={lolLogo} alt="Logo League Of Legends" width={'50%'}/></League>
-                    <League to={'r6'}><LeagueLogo src={csLogo} alt="Logo Counter Strike" width={'60%'} /></League>
-                    <League to={'r6'}><LeagueLogo src={valorantLogo} alt="Logo Valorant" width={'60%'} /></League>
-                    <League to={'r6'}><LeagueLogo src={r6Logo} alt="Logo Rainbow Six Siege"width={'60%'} /></League>
+                    <League to={'rainbow-six'}><LeagueLogo src={lolLogo} alt="Logo League Of Legends" width={'50%'} /></League>
+                    <League to={'rainbow-six'}><LeagueLogo src={csLogo} alt="Logo Counter Strike" width={'60%'} /></League>
+                    <League to={'rainbow-six'}><LeagueLogo src={valorantLogo} alt="Logo Valorant" width={'60%'} /></League>
+                    <League to={'rainbow-six'}><LeagueLogo src={r6Logo} alt="Logo Rainbow Six Siege" width={'60%'} /></League>
                 </Leagues>
             </GamesMain>
         </>

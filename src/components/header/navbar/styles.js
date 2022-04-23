@@ -1,15 +1,14 @@
 import styled from "styled-components"
 
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled.header`
+    position: fixed;
+    width: 100%;
     background-color: #1A1818;
     color: #FFF;
     height: 85px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.2rem calc((100vw - 1000px) / 7);
-    z-index: 12;
-
+    /* padding: 0.2rem calc((100vw - 1000px) / 7); */
+    top: 0;
+    left: 0;
 
     link {
         color: #FFF;
@@ -23,7 +22,17 @@ export const HeaderContainer = styled.div`
 
     @media screen and (max-width: 767px) {
         padding: 0 auto;
-        justify-content: space-around;
+        justify-content: space-between;
+    }
+`
+export const HeaderNav = styled.nav`
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+
+    @media screen and  (max-width: 768px) {
+        justify-content: space-between;
     }
 `
 
@@ -34,22 +43,14 @@ export const SystemLogo = styled.img`
     padding: 10px 0px 0px 30px;
     height: 60px;
     object-fit: contain;
-
-    transition: transform 80ms ease-in;
-
-    &:hover {
-        color: #FFF;
-        text-decoration: none;
-        cursor: pointer;
-        transform: scale(1.02);
-    }
     
-    @media screen and  (max-width: 768px) {
+    @media screen and (max-width: 768px) {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 auto;
         flex: 0 0 auto;
         display: block;
-        height: 60px;
+        padding: 0;
+        height: 40px;
     }
 
 `
@@ -82,44 +83,45 @@ export const LeagueLabel = styled.h2`
 `
 
 export const Toggle = styled.button`
+    /* position: fixed; */
+    display:inline-block;
     padding: 0 15px;
     font-family: fontAwesome;
     border: none;
     background-color: transparent;
-    color: #FFF;
+    color: #9A1F23;
     line-height: 2.4;
     transition: all 80ms ease-in;
 
     &:hover, &:focus {
-        color: #e2e2e2;
+        color: #9A1F23;;
         text-decoration: none;
         transform: scale(1.1);
     }
 
     &:before {
         content: "\f0c9";
-        font-size: 21px;
+        font-size: 24px;
     }
 
     @media screen and  (min-width: 767px) {
-        -webkit-box-ordinal-group: 0;
-        -ms-flex-order: -1;
-        order: -1;
+       display: none;
     }
 `
 
 export const Profile = styled.div`
     /* position: fixed;
     right: 10px; */
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
     font-size: 1.5rem;
     font-weight: 300;
     margin: 0 24px;
     display: flex;
 
-    @media screen and  (min-width: 768px) {
-        -webkit-box-flex: 1;
-        -ms-flex: 1 0 auto;
-        flex: 1 0 auto;
+    @media screen and  (max-width: 768px) {
+        display: none;
     }
 
 `
@@ -134,14 +136,28 @@ export const Logon = styled.span`
 
 `
 
-export const Logout = styled.div`
-    color: #212529;
-    text-decoration: none;
+export const ProfileMobile = styled.div`
+    color: #B7282F;
+    font-size: 1.6rem;
+    display: flex;
+
+    @media screen and  (min-width: 768px) {
+        display: none;
+    }
+
 `
 
-export const Login = styled.a`
-    color: #212529;
+export const Logout = styled.div`
+    color: #B7282F;
     text-decoration: none;
+    
+    cursor: pointer;
+`
+
+export const Login = styled.div`
+    color: #FFF;
+    text-decoration: none;
+    margin-right: 5px;
     transition: all 100ms ease-in;
 
     &:hover, &:focus {
@@ -153,9 +169,10 @@ export const Login = styled.a`
 
 `
 
-export const Register = styled.a`
-    color: #212529;
+export const Register = styled.div`
     text-decoration: none;
+    color: #FFF;
+    margin-left: 5px;
 
     transition: all 100ms ease-in;
 

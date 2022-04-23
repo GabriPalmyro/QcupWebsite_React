@@ -2,39 +2,43 @@ import React from "react"
 
 import * as FaIcons from 'react-icons/fa'
 import * as RiIcons from 'react-icons/ri'
+import * as MdIcons from 'react-icons/md'
 
 export const SideBarData = [
     {
         page: 'Home',
-        path: '/principal',
+        path: '/',
         icon: <FaIcons.FaHome />,
         sub: false,
         subMenu: []
     },
     {
-        page: 'Home',
-        path: '/principal',
-        icon: <FaIcons.FaHome />,
-        sub: false,
-        subMenu: []
-    },
-    {
-        page: 'Cadastros',
-        path: '#',
-        icon: <FaIcons.FaFile />,
+        page: 'Ligas',
+        path: '/',
+        icon: <MdIcons.MdSportsEsports />,
         opened: <RiIcons.RiArrowUpFill />,
         close: <RiIcons.RiArrowDownFill />,
         sub: false,
         subMenu: [
             {
-                page: 'Usuário',
-                path: '/usuario/listar',
-                icon: <FaIcons.FaUser />
+                page: 'League Of Legends',
+                path: '/',
+                icon: <MdIcons.MdSportsEsports />
             },
             {
-                page: 'Grupo',
-                path: '/grupo/listar',
-                icon: <FaIcons.FaLayerGroup />
+                page: 'Valorant',
+                path: '/',
+                icon: <MdIcons.MdSportsEsports />
+            },
+            {
+                page: 'CS:GO',
+                path: '/',
+                icon: <MdIcons.MdSportsEsports />
+            },
+            {
+                page: 'Rainbow Six',
+                path: '/',
+                icon: <MdIcons.MdSportsEsports />
             },
         ]
     },

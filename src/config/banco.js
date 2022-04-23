@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { SERVIDOR_LARAVEL } from './Config';
 
-const http = axios.create({
+const api = axios.create({
     baseURL: SERVIDOR_LARAVEL,
 })
 
-export default http;
+export default api;

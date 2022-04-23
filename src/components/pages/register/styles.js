@@ -1,8 +1,9 @@
-import styled from "styled-components"
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import InputBase from "@material-ui/core/Input";
 
-
-export const Login = styled.div`
-    height: calc(100vh - 85px);
+export const Register = styled.div`
+    height: auto;
     width: 100%;
     display: flex;
     font-family: 'Open Sans', sans-serif;
@@ -16,7 +17,7 @@ export const Login = styled.div`
 `
 
 
-export const FormLogin = styled.form`
+export const FormRegister = styled.div`
     width: 50%;
 
     @media screen and (max-width: 768px){
@@ -24,10 +25,10 @@ export const FormLogin = styled.form`
     }
 `
 
-export const LoginTitle = styled.h2`
-    padding-top: 8%;
+export const RegisterTitle = styled.h2`
+    padding-top: 1%;
     font-weight: 800;
-    font-size: 3rem;
+    font-size: 2.2rem;
 
     @media screen and (max-width: 768px){
         font-weight: bold;
@@ -35,18 +36,18 @@ export const LoginTitle = styled.h2`
     }
 `
 
-export const LoginLabel = styled.div`
-    padding-top: 5%;
+export const RegisterLabel = styled.div`
+    padding-top: 3%;
     padding-bottom: 5px;
     font-weight: 300;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 
     @media screen and (max-width: 768px){
         padding-top: 5%;
     }
 `
 
-export const LoginCard = styled.div`
+export const RegisterCard = styled.div`
     height: 100%;
     width: 70%;
     padding: 20px 50px 0px;
@@ -63,13 +64,13 @@ export const LoginCard = styled.div`
     }
 `
 
-export const LoginInput = styled.input`
+export const RegisterInput = styled.input`
     width: 100%;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 8px 20px;
     background-color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    border: 0;
+    border: none;
     outline: none;
     font-weight: 400;
     box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.2);
@@ -79,7 +80,24 @@ export const LoginInput = styled.input`
     }
 
 `
-export const LoginButton = styled.input`
+
+export const RegisterPassInput = styled(InputBase)`
+    width: 100%;
+    border-radius: 10px;
+    padding: 4px 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    border: none;
+    outline: none;
+    font-weight: 400;
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.2);
+
+    @media screen and (max-width: 768px){
+        width: 100%;
+    }
+
+`
+export const RegisterButton = styled.button`
     width: 40%;
     border-radius: 10px;
     padding: 10px 20px;
@@ -103,8 +121,8 @@ export const LoginButton = styled.input`
 
 `
 
-export const RegistorToCard = styled.div`
-    height: 100%;
+export const LoginToCard = styled.div`
+    height: calc(100vh - 85px);
     width: 30%;
     padding: 20px 40px;
     display: flex;
@@ -126,7 +144,7 @@ export const RegistorToCard = styled.div`
     }
 `
 
-export const ButtonToRegister = styled.button`
+export const ButtonToLogin = styled(Link)`
     width: 75%;
     border-radius: 50px;
     padding: 10px 0;
@@ -134,11 +152,30 @@ export const ButtonToRegister = styled.button`
     text-decoration: none;
     border: none;
     font-weight: bold;
+    color: #000;
     box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.2);
     transition: all 500ms ease 100ms;
 
-    &:hover {
-        
+    &:hover {       
+    color: #000;
     box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.25);
     }
 `
+
+export const Loader = styled.div`
+    margin-top: 6%;
+    margin-left: 2%;
+    border: 7px solid #F3F3F3;
+    border-top: 7px solid #B7282F;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s ease infinite;
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+`
+
+

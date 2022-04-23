@@ -12,6 +12,7 @@ export const MainContent = styled.div`
 export const Banner = styled.img`
     min-width: 100%;
     height: 300px;
+    margin-top: 85px;
     object-fit: cover;
 	-webkit-transition: .3s ease-in-out;
 	transition: all .3s ease-in-out;
@@ -21,12 +22,14 @@ export const Banner = styled.img`
     }
     
     @media screen and (max-width: 767px) {
-        height: 200px;
+        height: 150px;
+        width: 100%;
     }
 `
 
 export const GamesMain = styled.div`
     display: flex;
+    height: auto;
     width: 100%;
     background-color: #1f1f1f;
     color: #FFF;
@@ -48,7 +51,6 @@ export const GamesOfTheDay = styled.div`
         font-weight: 300;
     }
     
-
     @media screen and (max-width: 768px){
         width: 100%;
     }
@@ -65,13 +67,12 @@ export const Leagues = styled.div`
         font-weight: 300;
     }
 
-
     @media screen and (max-width: 768px){
         width: 100%;
     }
 `
 export const League = styled(Link)`
-    width: 60%;
+    width: 70%;
     height: 70px;
     margin-bottom: 30px;
     padding: 5px 10px;
@@ -91,6 +92,10 @@ export const League = styled(Link)`
 `
 
 export const LeagueLogo = styled.img`
-    padding: 40px 20px;
-    color: white;
+    padding: 50px 20px;
+    width: 50%;
+
+    @media screen and (max-width: 768px){
+        width: 180px;
+    }
 `
