@@ -5,6 +5,7 @@ import { HeaderContainer, HeaderNav, Toggle, SystemLogo, Leagues, LeagueLabel, P
 import LOGO from '../../../assets/img/logo.png'
 import { Link } from 'react-router-dom'
 import { TimeContext } from '../../../contexts/time/TimeContext';
+import { useNavigate } from 'react-router-dom'
 
 export default function Navbar(props) {
 
@@ -29,10 +30,10 @@ export default function Navbar(props) {
                 <Toggle onClick={props.drawerToggleClickRender} />
                 <Link to="/"><SystemLogo src={LOGO} alt="logo"></SystemLogo></Link>
                 <Leagues>
-                    <LeagueLabel>LOL</LeagueLabel>
-                    <LeagueLabel>CS</LeagueLabel>
-                    <LeagueLabel>VALORANT</LeagueLabel>
-                    <Link to="rainbow-six"><LeagueLabel>R6</LeagueLabel></Link>
+                    <LeagueLabel to="liga/2">LOL</LeagueLabel>
+                    <LeagueLabel to="liga/3">CS</LeagueLabel>
+                    <LeagueLabel to="liga/4">VALORANT</LeagueLabel>
+                    <LeagueLabel to="liga/1">R6</LeagueLabel>
                 </Leagues>
                 <Profile>
                     {logged ?

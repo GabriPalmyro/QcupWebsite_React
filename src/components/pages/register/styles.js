@@ -3,15 +3,17 @@ import styled from "styled-components";
 import InputBase from "@material-ui/core/Input";
 
 export const Register = styled.div`
-    height: auto;
+    height: 100vh;
     width: 100%;
     display: flex;
     font-family: 'Open Sans', sans-serif;
     background-color: #383838;
     color: #fff;
+    padding-top: 75px;
 
     @media screen and (max-width: 768px){
         flex-direction: column;
+        align-items: center;
         height: auto;
     }
 `
@@ -31,6 +33,7 @@ export const RegisterTitle = styled.h2`
     font-size: 2.2rem;
 
     @media screen and (max-width: 768px){
+        margin-top: 20px;
         font-weight: bold;
         font-size: 1.6rem;
     }
@@ -138,8 +141,8 @@ export const LoginToCard = styled.div`
     @media screen and (max-width: 768px){
         box-shadow: none;
         height: auto;
-        padding: 30px 40px;
-        border-radius: 0;
+        padding: 50px 40px;
+        border-radius: 20px 20px 0px 0px;
         width: 100%;
     }
 `
@@ -147,6 +150,7 @@ export const LoginToCard = styled.div`
 export const ButtonToLogin = styled(Link)`
     width: 75%;
     border-radius: 50px;
+    margin-top: 10px;
     padding: 10px 0;
     background-color: white;
     text-decoration: none;
@@ -157,24 +161,8 @@ export const ButtonToLogin = styled(Link)`
     transition: all 500ms ease 100ms;
 
     &:hover {       
-    color: #000;
-    box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.25);
-    }
-`
-
-export const Loader = styled.div`
-    margin-top: 6%;
-    margin-left: 2%;
-    border: 7px solid #F3F3F3;
-    border-top: 7px solid #B7282F;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 2s ease infinite;
-
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        color: #000;
+        box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.25);
     }
 `
 

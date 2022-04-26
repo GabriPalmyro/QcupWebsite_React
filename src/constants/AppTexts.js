@@ -1,0 +1,1 @@
+export var qcupAbout = "A QUARENTENA CUP vai trazer todas as emoções das partidas de CS:GO, League Of Legends, Rainbow Six Siege e Valorant.\nCom times compostos de no mínino um integrante do IFSP (Instituto Federal de São Paulo) os jogos prometem ser extramemnte disputados e com uma ótimas batalhas!";

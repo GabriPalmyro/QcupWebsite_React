@@ -15,7 +15,7 @@ export default function LoginPage() {
         e.preventDefault();
         try {
             await loginTime(email, senha, () => {
-                navigate('/')
+                navigate('/', { replace: true })
             });
         } catch (error) {
             alert(error)
@@ -43,7 +43,7 @@ export default function LoginPage() {
                         <LoginLabel>E-mail</LoginLabel>
                         <LoginInput type="text" name="email" onChange={e => setEmail(e.target.value)} />
                         <LoginLabel>Senha</LoginLabel>
-                        <LoginInput type="text" name="password" onChange={e => setSenha(e.target.value)} />
+                        <LoginInput type="password" name="password" onChange={e => setSenha(e.target.value)} />
                         <LoginButton type="submit" value={"Entrar"} onClick={login} />
                     </FormLogin>
                 </LoginCard>

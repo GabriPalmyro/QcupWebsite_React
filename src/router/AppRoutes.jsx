@@ -6,8 +6,11 @@ import League from '../components/pages/leagues/League'
 import LoginPage from '../components/pages/login/Login';
 import RegisterPage from '../components/pages/register/Register';
 import Backdrop from '../components/backdrop/Backdrop';
+import Loading from '../components/common/loading/Loading';
+import Leagues from '../components/pages/leagues/League';
 
 import { TimeProvider } from '../contexts/time/TimeContext';
+import { LigaProvider } from '../contexts/liga/LigaContext';
 
 import {
     BrowserRouter,
@@ -32,21 +35,25 @@ function AppRoutes() {
     let backdrop;
 
     if (isDrawerOpen) {
-        backdrop = <Backdrop click={backdropClickRender}/>;
+        backdrop = <Backdrop click={backdropClickRender} />;
     }
 
     return (
         <BrowserRouter>
             <TimeProvider>
-                <Navbar drawerToggleClickRender={drawerToggleClickRender} />
-                <Drawer show={isDrawerOpen}/>
-                {backdrop}
-                <Routes>
-                    <Route path="/" element={<Layout />} />
-                    <Route path="league" element={<League />} />
-                    <Route path="login" element={<LoginPage />} />
-                    <Route path="register" element={<RegisterPage />} />
-                </Routes>
+                <LigaProvider>
+                    <Navbar drawerToggleClickRender={drawerToggleClickRender} />
+                    <Drawer show={isDrawerOpen} />
+                    {backdrop}
+                    <Loading />
+                    <Routes>
+                        <Route path="/" element={<Layout />} />
+                        <Route path="league" element={<League />} />
+                        <Route path="login" element={<LoginPage />} />
+                        <Route path="register" element={<RegisterPage />} />
+                        <Route path="liga/:id" exact element={<Leagues />} />
+                    </Routes>
+                </LigaProvider>
             </TimeProvider>
         </BrowserRouter>
     )

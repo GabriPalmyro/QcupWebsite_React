@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const HeaderContainer = styled.header`
@@ -5,7 +6,7 @@ export const HeaderContainer = styled.header`
     width: 100%;
     background-color: #1A1818;
     color: #FFF;
-    height: 85px;
+    height: 75px;
     /* padding: 0.2rem calc((100vw - 1000px) / 7); */
     top: 0;
     left: 0;
@@ -67,7 +68,7 @@ export const Leagues = styled.div`
         display: none;
     }
 `
-export const LeagueLabel = styled.h2`
+export const LeagueLabel = styled(Link)`
     font-size: 1.8rem;
     font-weight: 300;
     margin: 0 2%;

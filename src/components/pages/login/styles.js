@@ -3,12 +3,12 @@ import styled from "styled-components"
 
 
 export const Login = styled.div`
-    height: calc(100vh - 85px);
+    height: calc(100vh);
     width: 100%;
     display: flex;
     font-family: 'Open Sans', sans-serif;
-    background-color: #383838;
     color: #fff;
+    padding-top: 75px;
 
     @media screen and (max-width: 768px){
         flex-direction: column;
@@ -121,8 +121,8 @@ export const RegistorToCard = styled.div`
     @media screen and (max-width: 768px){
         box-shadow: none;
         height: auto;
-        padding: 30px 40px;
-        border-radius: 0;
+        padding: 50px 40px;
+        border-radius: 20px 20px 0px 0px;
         width: 100%;
     }
 `

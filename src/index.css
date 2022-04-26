@@ -3,6 +3,7 @@ html {
   margin: 0;
   padding: 0;
   height: 100%;
+  background-color: #383838;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

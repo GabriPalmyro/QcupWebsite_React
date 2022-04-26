@@ -8,7 +8,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { TimeContext } from '../../../contexts/time/TimeContext';
 import { useNavigate } from 'react-router-dom'
 
-import { Loader, Register, RegisterCard, LoginToCard, ButtonToLogin, RegisterInput, RegisterPassInput, RegisterTitle, RegisterButton, RegisterLabel, FormRegister } from './styles';
+import { Register, RegisterCard, LoginToCard, ButtonToLogin, RegisterInput, RegisterPassInput, RegisterTitle, RegisterButton, RegisterLabel, FormRegister } from './styles';
 
 export default function RegisterPage() {
 
@@ -39,7 +39,7 @@ export default function RegisterPage() {
         e.preventDefault();
         try {
             await registerNewTime(email, values.password, nome, image, () => {
-                navigate('/');
+                navigate('/', { replace: true });
             });
         } catch (error) {
             alert(error);
@@ -101,7 +101,6 @@ return (
                     {/* <RegisterLabel>Logo</RegisterLabel>
                         <RegisterInput type={"file"} accept={".png, .jpg, .jpeg"} name={"logo"} onChange={(e) => { setImage(e.target.files[0]) }} /> */}
                     <RegisterButton onClick={register} disabled={loading}>Registrar</RegisterButton>
-                    {loading ? (<Loader />) : (<div></div>)}
                 </FormRegister>
             </RegisterCard>
             <LoginToCard>
