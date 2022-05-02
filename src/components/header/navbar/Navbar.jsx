@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 export default function Navbar(props) {
 
     const { logged, time, logout } = useContext(TimeContext);
+    const navigate = useNavigate()
     // var dimension = Dimensions.get('window');
 
     async function logoutTime() {
@@ -17,7 +18,9 @@ export default function Navbar(props) {
             var token = localStorage.getItem('token');
             if (!token || token == null)
                 return;
-            await logout(token, () => { });
+            await logout(token, () => {
+                navigate('/', { replace: true })
+            });
         } catch (error) {
             console.log(error)
         }
@@ -40,7 +43,7 @@ export default function Navbar(props) {
                         (
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <Logon>Equipe:</Logon>
-                                <UserName>{time.nome}</UserName>
+                                <UserName to="meu-time/1">{time.nome}</UserName>
                                 <Logout onClick={logoutTime} ><FaIcons.FaSignOutAlt /></Logout>
                             </div>)
                         :
@@ -49,8 +52,8 @@ export default function Navbar(props) {
                         </div>)}
                 </Profile>
                 <Link to={logged ? "" : "login"}>
-                    <ProfileMobile> 
-                        <BiIcons.BiUser /> 
+                    <ProfileMobile>
+                        <BiIcons.BiUser />
                     </ProfileMobile>
                 </Link>
             </HeaderNav>

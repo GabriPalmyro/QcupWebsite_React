@@ -29,6 +29,7 @@ export const LoginTitle = styled.h2`
     padding-top: 8%;
     font-weight: 800;
     font-size: 3rem;
+    padding-bottom: 5%;
 
     @media screen and (max-width: 768px){
         font-weight: bold;
@@ -37,7 +38,6 @@ export const LoginTitle = styled.h2`
 `
 
 export const LoginLabel = styled.div`
-    padding-top: 5%;
     padding-bottom: 5px;
     font-weight: 300;
     font-size: 1.5rem;
@@ -142,5 +142,8 @@ export const ButtonToRegister = styled(Link)`
     &:hover {       
     color: #000;
     box-shadow: 0px 5px 20px 5px rgba(0, 0, 0, 0.25);
-    }
+}
+`
+
+export const ErrorMessage = styled.div`
 `

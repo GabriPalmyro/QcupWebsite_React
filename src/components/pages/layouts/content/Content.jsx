@@ -9,24 +9,10 @@ import { qcupAbout } from '../../../../constants/AppTexts'
 
 import { TimeContext } from '../../../../contexts/time/TimeContext';
 
-import api from '../../../../config/banco';
-
 function Content() {
 
     
     const { logged } = useContext(TimeContext);
-
-    // const [times, setTimes] = useState([])
-
-    // async function registeredTimes() {
-    //     const response = await api.get('api/times')
-    //     setTimes(response.data)
-    //     console.log(response.data)
-    // }
-
-    useEffect(() => {
-        // registeredTimes()
-    }, [])
 
     return (
         <React.Fragment>

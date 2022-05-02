@@ -17,6 +17,7 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
+import ProfileTeam from '../components/pages/profileTeam/ProfileTeam';
 
 
 function AppRoutes() {
@@ -52,6 +53,7 @@ function AppRoutes() {
                         <Route path="login" element={<LoginPage />} />
                         <Route path="register" element={<RegisterPage />} />
                         <Route path="liga/:id" exact element={<Leagues />} />
+                        <Route path="meu-time/:id" exact element={<ProfileTeam />} />
                     </Routes>
                 </LigaProvider>
             </TimeProvider>

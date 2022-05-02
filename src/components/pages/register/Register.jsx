@@ -15,6 +15,7 @@ export default function RegisterPage() {
     const [image, setImage] = useState('');
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const { loading, logged, registerNewTime } = useContext(TimeContext);
     const navigate = useNavigate()
 
@@ -38,11 +39,12 @@ export default function RegisterPage() {
     async function register(e) {
         e.preventDefault();
         try {
-            await registerNewTime(email, values.password, nome, image, () => {
+            var response = await registerNewTime(email, values.password, nome, image, () => {
                 navigate('/', { replace: true });
             });
+            setErrorMessage(response)
         } catch (error) {
-            alert(error);
+            setErrorMessage(error)
         }
     }
 
@@ -50,64 +52,69 @@ export default function RegisterPage() {
     async function verifyAuth() {
         await new Promise(resolve => setTimeout(resolve, 3000));
         if (logged) {
-        navigate('/');
+            navigate('/');
+        }
     }
-}
 
-useEffect(() => { verifyAuth() }, [])
+    useEffect(() => { verifyAuth() }, [])
 
-return (
-    <React.Fragment>
-        <Register>
-            <RegisterCard>
-                <RegisterTitle>
-                    Faça o cadastro de seu Time
-                </RegisterTitle>
-                <FormRegister>
-                    <RegisterLabel>Nome Time</RegisterLabel>
-                    <RegisterInput
-                        type="text"
-                        name="time"
-                        onChange={e => setNome(e.target.value)}
-                        disabled={loading}
-                    />
-                    <RegisterLabel>E-mail</RegisterLabel>
-                    <RegisterInput
-                        type="text"
-                        name="email"
-                        onChange={e => setEmail(e.target.value)}
-                        disabled={loading}
-                    />
-                    <RegisterLabel>Senha</RegisterLabel>
-                    <div>
-                        <RegisterPassInput
-                            type={values.showPassword ? "text" : "password"}
-                            onChange={handlePasswordChange("password")}
-                            value={values.password}
+    return (
+        <React.Fragment>
+            <Register>
+                <RegisterCard>
+                    <RegisterTitle>
+                        Faça o cadastro de seu Time
+                    </RegisterTitle>
+                    <FormRegister>
+                        {
+                            errorMessage && (<div className="alert alert-danger" role="alert">
+                                {errorMessage}
+                            </div>)
+                        }
+                        <RegisterLabel>Nome Time</RegisterLabel>
+                        <RegisterInput
+                            type="text"
+                            name="time"
+                            onChange={e => setNome(e.target.value)}
                             disabled={loading}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                    >
-                                        {values.showPassword ? <Visibility /> : <VisibilityOff />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            name="password"
                         />
-                    </div>
-                    {/* <RegisterLabel>Logo</RegisterLabel>
-                        <RegisterInput type={"file"} accept={".png, .jpg, .jpeg"} name={"logo"} onChange={(e) => { setImage(e.target.files[0]) }} /> */}
-                    <RegisterButton onClick={register} disabled={loading}>Registrar</RegisterButton>
-                </FormRegister>
-            </RegisterCard>
-            <LoginToCard>
-                <h2 style={{ fontWeight: '800' }}>Já tem seu time{<br />}cadastrado?</h2>
-                <ButtonToLogin to="/login">Login</ButtonToLogin>
-            </LoginToCard>
-        </Register>
-    </React.Fragment>
-)
+                        <RegisterLabel>E-mail</RegisterLabel>
+                        <RegisterInput
+                            type="text"
+                            name="email"
+                            onChange={e => setEmail(e.target.value)}
+                            disabled={loading}
+                        />
+                        <RegisterLabel>Senha</RegisterLabel>
+                        <div>
+                            <RegisterPassInput
+                                type={values.showPassword ? "text" : "password"}
+                                onChange={handlePasswordChange("password")}
+                                value={values.password}
+                                disabled={loading}
+                                endAdornment={
+                                    <InputAdornment position="end">
+                                        <IconButton
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                        >
+                                            {values.showPassword ? <Visibility /> : <VisibilityOff />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                name="password"
+                            />
+                        </div>
+                        <RegisterLabel>Logo</RegisterLabel>
+                        <RegisterInput type={"file"} accept={".png, .jpg, .jpeg"} name={"logo"} onChange={(e) => { setImage(e.target.files[0]) }} />
+                        <RegisterButton onClick={register} disabled={loading}>Registrar</RegisterButton>
+                    </FormRegister>
+                </RegisterCard>
+                <LoginToCard>
+                    <h2 style={{ fontWeight: '800' }}>Já tem seu time{<br />}cadastrado?</h2>
+                    <ButtonToLogin to="/login">Login</ButtonToLogin>
+                </LoginToCard>
+            </Register>
+        </React.Fragment>
+    )
 }

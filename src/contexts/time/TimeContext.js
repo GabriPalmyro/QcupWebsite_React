@@ -1,13 +1,12 @@
 import React, { createContext, useState, useEffect } from 'react'
-// import storage from '../../firebase'
 import api from '../../config/banco.js'
 
 const TimeContext = createContext();
 
 function TimeProvider({ children }) {
 
-    // const [currentTime, setCurrentTime] = useState('');
     const [time, setTime] = useState({ nome: '', });
+    const [jogadores, setJogadores] = useState([]);
     const [loading, setLoading] = useState(false);
     const [logged, setLogged] = useState(false);
 
@@ -19,38 +18,22 @@ function TimeProvider({ children }) {
             var imageUrl = nome;
 
             try {
-                // if (!logo)
-                //     return;
-
-                // var taskSnapshot = storage.ref(`/times/${logo.name}`).put(logo)
-
-                // taskSnapshot.on('state_changed',
-                //     (snapShot) => {
-                //         console.log(snapShot);
-                //     }, (err) => {
-                //         console.log(err);
-                //     }, () => {
-                //         storage.ref('times').child(logo.name).getDownloadURL()
-                //             .then(fireBaseUrl => {
-                //                 imageUrl = fireBaseUrl;
-                //             });
-                //     })
-
                 const response = await api.post(
                     'api/register',
                     { 'nome': nome, 'email': email, 'senha': password, 'logo': imageUrl })
 
                 if (response.status === 200) {
                     localStorage.setItem('token', response.data.token);
-                    console.log(response.data.time)
                     setTime(response.data.time);
                     setLogged(true);
                     voidCallBack();
                 }
                 setLoading(false);
+
             } catch (error) {
                 setLoading(false);
-                return 'Falha no registro, tente novamente.';
+                console.log(error.response.data)
+                return error.response.data.message;
             }
             setLoading(false)
         }
@@ -66,6 +49,7 @@ function TimeProvider({ children }) {
                 const response = await api.post(
                     'api/login',
                     { 'email': email, 'senha': password })
+
                 if (response.status === 200) {
                     localStorage.setItem('token', response.data.token);
                     setTime(response.data.time);
@@ -75,8 +59,8 @@ function TimeProvider({ children }) {
                 setLoading(false)
             } catch (error) {
                 setLoading(false)
-                console.log(error.response.data.message);
-                return 'Falha no login, tente novamente.'
+                console.log(error.response.data)
+                return error.response.data.message;
             }
             setLoading(false)
         }
@@ -135,7 +119,6 @@ function TimeProvider({ children }) {
         setLoading(false)
     }
 
-
     async function login() {
         try {
             var token = localStorage.getItem('token');
@@ -150,13 +133,38 @@ function TimeProvider({ children }) {
         }
     }
 
+    async function getPlayers(id) {
+        setLoading(true)
+        var token = localStorage.getItem('token')
+        try {
+            const response = await api.post(
+                'api/jogadores', {
+                'id_time': id
+            }, {
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Accept': 'application/json'
+                }
+            })
+            if (response.status === 200) {
+                console.log(response.data.jogadores)
+                setJogadores(response.data.jogadores);
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            return 'Falha no login, tente novamente.';
+        }
+        setLoading(false)
+    }
+
     useEffect(() => {
         login()
     }, [])
 
 
     return (
-        <TimeContext.Provider value={{ time, loading, logged, setLogged, registerNewTime, loginTime, logout, refreshData }}>
+        <TimeContext.Provider value={{ time, jogadores, loading, logged, setLogged, registerNewTime, loginTime, logout, refreshData, getPlayers}}>
             {children}
         </TimeContext.Provider>
     )

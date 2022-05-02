@@ -36,7 +36,7 @@ export default function Leagues() {
                         (<tr key={time.id}>
                             <Position>{index + 1}</Position>
                             <TitleTime>
-                                <img src={time.logo} alt={"logo_" + index} width={'60px'} height={'60px'} style={{ marginRight: '20px' }} />
+                                <img src={time.logo} alt={"logo_" + index} width={'60px'} height={'60px'} style={{ marginRight: '20px' }} loading="lazy"/>
                                 {time.nome}
                             </TitleTime>
                             <PontosTime>{time.pivot.pontos}</PontosTime>

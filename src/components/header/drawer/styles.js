@@ -16,7 +16,7 @@ export const SideDrawer = styled.nav`
     left: 0;
     width: 70%;
     max-width: 400px;
-    z-index: 200;
+    z-index: 500;
     transition: all 0.3s ease-out;
 
     ${props => props.isOpen ? `

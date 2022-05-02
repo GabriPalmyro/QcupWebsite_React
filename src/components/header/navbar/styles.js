@@ -10,6 +10,7 @@ export const HeaderContainer = styled.header`
     /* padding: 0.2rem calc((100vw - 1000px) / 7); */
     top: 0;
     left: 0;
+    z-index: 300;
 
     link {
         color: #FFF;
@@ -127,7 +128,7 @@ export const Profile = styled.div`
 
 `
 
-export const UserName = styled.span`
+export const UserName = styled(Link)`
     padding-right: 13px;
     font-weight: 500;
 `

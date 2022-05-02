@@ -22,6 +22,10 @@ export const Register = styled.div`
 export const FormRegister = styled.div`
     width: 50%;
 
+    .alert.alert-danger {
+        margin-top: 1%;
+    }
+
     @media screen and (max-width: 768px){
        width: 100%;
     }
