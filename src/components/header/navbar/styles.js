@@ -138,7 +138,7 @@ export const Logon = styled.span`
 
 `
 
-export const ProfileMobile = styled.div`
+export const ProfileMobile = styled(Link)`
     color: #B7282F;
     font-size: 1.6rem;
     display: flex;

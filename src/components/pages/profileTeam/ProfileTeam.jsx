@@ -2,12 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import MyPlayers from "./players/MyPlayers";
 import MyLeagues from "./myLegues/MyLeagues";
 import { TimeContext } from '../../../contexts/time/TimeContext';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Perfil, PerfilHeader, TeamInfos, TeamLogo, Divider, MenuPerfil, MenuTabs, MenuPages } from './styles';
 
 
 export default function ProfileTeam() {
 
+    let { id } = useParams();
     const { time, getPlayers, logged} = useContext(TimeContext);
     const [page, setPage] = useState(1)
     const classes = ["list-group-item list-group-item-action", "list-group-item list-group-item-action active"]
@@ -36,8 +37,8 @@ export default function ProfileTeam() {
     }
 
     useEffect(() => {
-        verifyAuth()
-        getPlayers(1)
+        // verifyAuth()
+        getPlayers(id)
     }, [])
 
     return (

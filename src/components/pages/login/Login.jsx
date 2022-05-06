@@ -41,7 +41,7 @@ export default function LoginPage() {
                     <LoginTitle>
                         Faça o login com o seu time
                     </LoginTitle>
-                    <FormLogin action="">
+                    <FormLogin>
                         {
                             errorMessage && (<div className="alert alert-danger" role="alert">
                                 {errorMessage}

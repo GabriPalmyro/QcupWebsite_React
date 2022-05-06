@@ -158,13 +158,48 @@ function TimeProvider({ children }) {
         setLoading(false)
     }
 
+    async function addNewPlayer(email, nome, nickname, funcao, voidCallBack) {
+        setLoading(true)
+        var token = localStorage.getItem('token')
+        console.log(email, nome, nickname, funcao)
+        try {
+            const response = await api.post(
+                'api/times/novo-jogador', {
+                'id_time': String(time.id),
+                'nome': nome,
+                'email': email,
+                'nickname': nickname,
+                'funcao': funcao
+            }, {
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Accept': 'application/json'
+                }
+            })
+            if (response.status === 200) {
+                console.log(response.data.message)
+                voidCallBack()
+                return response.data.message;
+            } else if (response.status === 422) {
+                setLoading(false)
+                throw new Error(response.data.erro);
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            console.log(error.response.data.erro)
+            return error.response.data.erro
+        }
+        setLoading(false)
+    }
+
     useEffect(() => {
         login()
     }, [])
 
 
     return (
-        <TimeContext.Provider value={{ time, jogadores, loading, logged, setLogged, registerNewTime, loginTime, logout, refreshData, getPlayers}}>
+        <TimeContext.Provider value={{ time, jogadores, loading, logged, setLogged, registerNewTime, loginTime, logout, refreshData, getPlayers, addNewPlayer }}>
             {children}
         </TimeContext.Provider>
     )

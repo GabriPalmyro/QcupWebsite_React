@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { TimeContext } from '../../../contexts/time/TimeContext';
 import { useNavigate } from 'react-router-dom'
 
+
 export default function Navbar(props) {
 
     const { logged, time, logout } = useContext(TimeContext);
@@ -43,7 +44,7 @@ export default function Navbar(props) {
                         (
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <Logon>Equipe:</Logon>
-                                <UserName to="meu-time/1">{time.nome}</UserName>
+                                <UserName to={"meu-time/" + time.id}>{time.nome}</UserName>
                                 <Logout onClick={logoutTime} ><FaIcons.FaSignOutAlt /></Logout>
                             </div>)
                         :
@@ -52,7 +53,7 @@ export default function Navbar(props) {
                         </div>)}
                 </Profile>
                 <Link to={logged ? "" : "login"}>
-                    <ProfileMobile>
+                    <ProfileMobile to={"meu-time/" + time.id}>
                         <BiIcons.BiUser />
                     </ProfileMobile>
                 </Link>

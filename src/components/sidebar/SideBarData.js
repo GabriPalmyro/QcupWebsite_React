@@ -1,5 +1,4 @@
 import React from "react"
-
 import * as FaIcons from 'react-icons/fa'
 import * as RiIcons from 'react-icons/ri'
 import * as MdIcons from 'react-icons/md'
@@ -9,6 +8,13 @@ export const SideBarData = [
         page: 'Home',
         path: '/',
         icon: <FaIcons.FaHome />,
+        sub: false,
+        subMenu: []
+    },
+    {
+        page: 'Perfil',
+        path: '',
+        icon: <FaIcons.FaPersonBooth />,
         sub: false,
         subMenu: []
     },
