@@ -27,8 +27,8 @@ function LigaProvider({ children }) {
 
     async function buscarLigaPorId(id) {
         setTimes([])
-        setLiga(START_LIGA)
         setLoadingLiga(true)
+        setLiga(START_LIGA)
 
         try {
             api.post('api/liga', { 'id_liga': id }).then((response) => {

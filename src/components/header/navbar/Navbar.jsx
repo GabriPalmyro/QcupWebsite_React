@@ -34,10 +34,10 @@ export default function Navbar(props) {
                 <Toggle onClick={props.drawerToggleClickRender} />
                 <Link to="/"><SystemLogo src={LOGO} alt="logo"></SystemLogo></Link>
                 <Leagues>
-                    <LeagueLabel to="liga/2">LOL</LeagueLabel>
-                    <LeagueLabel to="liga/3">CS</LeagueLabel>
-                    <LeagueLabel to="liga/4">VALORANT</LeagueLabel>
-                    <LeagueLabel to="liga/1">R6</LeagueLabel>
+                    <LeagueLabel to="liga/1">LOL</LeagueLabel>
+                    <LeagueLabel to="liga/2">CS</LeagueLabel>
+                    <LeagueLabel to="liga/3">VALORANT</LeagueLabel>
+                    <LeagueLabel to="liga/4">R6</LeagueLabel>
                 </Leagues>
                 <Profile>
                     {logged ?
@@ -52,11 +52,9 @@ export default function Navbar(props) {
                             <Link to="login"><Login>Login</Login></Link> / <Link to="register"><Register>Registrar-se</Register></Link>
                         </div>)}
                 </Profile>
-                <Link to={logged ? "" : "login"}>
-                    <ProfileMobile to={"meu-time/" + time.id}>
+                    <ProfileMobile to={ logged ? "meu-time/" + time.id : ""}>
                         <BiIcons.BiUser />
                     </ProfileMobile>
-                </Link>
             </HeaderNav>
         </HeaderContainer>
     )

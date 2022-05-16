@@ -10,7 +10,8 @@ export default function Backdrop(props) {
     const { loadingLiga } = useContext(LigaContext);
 
     return (
-        ( loading || loadingLiga) ? <div className="backdrop">
+        loading || loadingLiga ? 
+        <div className="backdrop">
             <div className="loader"></div>
         </div> : <div></div>
     )

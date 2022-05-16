@@ -4,15 +4,78 @@ export const League = styled.div`
     height: 100%;
     width: 100%;
     color: white;
-    padding-top: 120px;
+    padding-top: 55px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `
 
+export const LeagueHeader = styled.div`
+    background-color: #d4d4d4;
+    color: #000;
+    width: 100%;
+    height: 160px;
+    margin: 20px 0px;
+    padding: 0 20px 0 50px;
+    display: flex;
+    align-items: center;
+
+    .info-leagues {
+        display: flex;
+        width: 70%;
+        justify-content: flex-start;
+        flex-direction: column;
+        margin-left: 35px;
+    }
+
+    .button-add {
+        width: 20%;
+        display: flex;
+        align-self: flex-end;
+        justify-content: flex-end;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+
+    @media screen and (max-width: 768px){
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        text-align: center;
+        height: 50vh;
+        padding: 20px 40px;
+
+        .info-leagues {
+            width: 100%;
+            margin-left: 0px;
+        }
+
+        .button-add {
+            width: 100%;
+            align-self: center;
+            justify-content: center;
+        }
+
+    }
+    
+`
+
+export const LeagueLogo = styled.img`
+    width: 12%;
+
+    @media screen and (max-width: 768px){
+        width: 200px;
+    }
+`
+
 export const TabelaClassificacao = styled.table`
-    width: 80%;
+    width: 96%;
     color: white;
     margin-left: 2%;
 `
@@ -64,6 +127,12 @@ export const TitleTime = styled.td`
     align-self: center;
     text-align: start;
     vertical-align: baseline;
+
+    @media screen and (max-width: 768px){
+        img {
+            display: none;
+        }
+    }
        
 `
 

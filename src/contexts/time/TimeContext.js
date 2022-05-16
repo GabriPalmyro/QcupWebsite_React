@@ -134,6 +134,7 @@ function TimeProvider({ children }) {
     }
 
     async function getPlayers(id) {
+        setJogadores([]);
         setLoading(true)
         var token = localStorage.getItem('token')
         try {
@@ -176,6 +177,7 @@ function TimeProvider({ children }) {
                     'Accept': 'application/json'
                 }
             })
+            console.log(response.data)
             if (response.status === 200) {
                 console.log(response.data.message)
                 voidCallBack()
@@ -187,7 +189,43 @@ function TimeProvider({ children }) {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            console.log(error.response.data.erro)
+            console.log(error.response.sta)
+            
+            if (error.response.status === 422) {
+                throw error.response.data.erro;
+            }
+
+            throw error.response.data.erro
+        }
+        setLoading(false)
+    }
+
+    async function registerToLeague(idLiga) {
+        setLoading(true)
+        var token = localStorage.getItem('token')
+        try {
+            const response = await api.post(
+                'api/times/participar-liga', {
+                'id_time': String(time.id),
+                'id_liga': idLiga
+            }, {
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Accept': 'application/json'
+                }
+            })
+            if (response.status === 200) {
+                setLoading(false)
+                // alert(response.data.message)
+                return response.data.message;
+            } else if (response.status === 422) {
+                setLoading(false)
+                alert(response.data.erro)
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            alert(error.response.data.erro)
             return error.response.data.erro
         }
         setLoading(false)
@@ -199,7 +237,7 @@ function TimeProvider({ children }) {
 
 
     return (
-        <TimeContext.Provider value={{ time, jogadores, loading, logged, setLogged, registerNewTime, loginTime, logout, refreshData, getPlayers, addNewPlayer }}>
+        <TimeContext.Provider value={{ time, jogadores, loading, logged, setLogged, registerNewTime, loginTime, logout, refreshData, getPlayers, addNewPlayer, registerToLeague }}>
             {children}
         </TimeContext.Provider>
     )

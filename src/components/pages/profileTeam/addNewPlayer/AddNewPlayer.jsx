@@ -24,9 +24,7 @@ function AddNewPlayer() {
         e.preventDefault();
         // try {
         addNewPlayer(email, nome, nickname, funcao, () => { navigate('/meu-time/' + time.id, { replace: true }) })
-            .then((response) => {
-                setErrorMessage(response)
-            }).catch((error) => { console.log(error); setErrorMessage(error); limparDados()});
+        .catch((error) => { console.log(error); setErrorMessage(error); limparDados() });
         // } catch (error) {
         // setErrorMessage(error)
         // }

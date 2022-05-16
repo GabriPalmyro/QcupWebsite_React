@@ -42,7 +42,6 @@ export default function RegisterPage() {
             var response = await registerNewTime(email, values.password, nome, image, () => {
                 navigate('/', { replace: true });
             });
-            setErrorMessage(response)
         } catch (error) {
             setErrorMessage(error)
         }

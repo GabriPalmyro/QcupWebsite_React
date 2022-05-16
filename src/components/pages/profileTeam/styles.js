@@ -6,7 +6,7 @@ export const Perfil = styled.div`
     flex-direction: column;
     width: 100%;
     height: 100%;
-    padding: 105px 50px 10px;
+    padding: 10px 50px 10px;
 
     .link {
         color: #FFF;
@@ -14,13 +14,14 @@ export const Perfil = styled.div`
     }
 
     @media screen and (max-width: 768px){
-        padding: 105px 20px;
+        padding: 15px 20px;
     }
 `;
 
 export const PerfilHeader = styled.div`
     width: 100%;
     display: flex;
+    padding: 85px 0px 0px;
 
     @media screen and (max-width: 768px){
         flex-direction: column;
@@ -174,18 +175,101 @@ export const RegisterInput = styled.input`
 
 export const Jogadores = styled.div`
     width: 100%;
-    display: grid;
+
+    a {
+        color: #FFF;
+        cursor: pointer;
+    }
+    
+    /* .table tbody tr:nth-child(even) {
+        background-color: #A2A2A2;
+    } */
+    /* display: grid;
     margin-top: 10px;
     grid-gap: 15px 30px;
     grid-template-columns: repeat(auto-fill, 220px);
+    */
 
-    @media screen and (max-width: 768px){
-        justify-content: center;
+    /* @media screen and (max-width: 768px){ */
+        /* justify-content: center;
         grid-gap: 20px 0px;
         margin-top: 25px;
-        grid-template-columns: repeat(auto-fill, 320px);
+        grid-template-columns: repeat(auto-fill, 320px); */
+    /* }  */
+`;
+
+export const TabelaJogadores = styled.div`
+    width: 100%;
+    
+    .table{
+        color: #FFF;
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table td,
+    .table th {
+        padding: 12px 15px;
+        /* border: 0.2px solid #DDD; */
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .table th {
+        color: #FFF;
+    }
+
+    .acoes {
+        display: flex;
+    }
+
+    @media screen and (max-width: 768px){
+
+        margin-top: 1.5rem;
+
+        .table thead{
+            display: none;
+        }
+
+        .table, .table tbody, .table tr, .table td{
+            display: block;
+            width: 100%;
+        }
+
+        .table td:last-child {
+            border: none;
+        }
+
+        .table tr{
+            margin-top: 15px;
+            margin-bottom: 15px;
+            border: 2px solid red;
+            border-radius: 10px;
+        }
+        .table td{
+            text-align: right;
+            padding-left: 50%;
+            text-align: right;
+            position: relative;
+        }
+
+        .table td::before{
+            content: attr(data-label);
+            position: absolute;
+            left:0;
+            width: 50%;
+            padding-left:15px;
+            font-size:15px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .botao-excluir {
+            margin-left: 12px;
+        }
     }
 `;
+
 
 export const JogadorCard = styled.div`
     height: 240px;
@@ -219,6 +303,8 @@ export const ImgJogador = styled.div`
 `;
 
 export const NomeJogador = styled.div`
+    margin-left: 15px;
+    width: 70%;
     font-weight: 400;
 
     @media screen and (max-width: 768px){
@@ -255,3 +341,5 @@ export const Stats = styled.div`
     font-size: 14px;
     font-weight: 600;
 `;
+
+
