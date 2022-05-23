@@ -17,8 +17,16 @@ export default function Leagues(props) {
     const [modalShow, setModalShow] = useState(false);
     const handleClose = () => setModalShow(false);
     const handleShow = () => setModalShow(true);
+    
+    const goToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
 
     useEffect(() => {
+        goToTop()
         buscarLigaPorId(id)
     }, [id])
 

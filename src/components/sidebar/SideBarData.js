@@ -13,8 +13,8 @@ export const SideBarData = [
     },
     {
         page: 'Perfil',
-        path: '',
-        icon: <FaIcons.FaPersonBooth />,
+        path: '/meu-time',
+        icon: <FaIcons.FaUserAlt />,
         sub: false,
         subMenu: []
     },
@@ -24,26 +24,26 @@ export const SideBarData = [
         icon: <MdIcons.MdSportsEsports />,
         opened: <RiIcons.RiArrowUpFill />,
         close: <RiIcons.RiArrowDownFill />,
-        sub: false,
+        sub: true,
         subMenu: [
             {
                 page: 'League Of Legends',
-                path: '/',
+                path: 'liga/1',
                 icon: <MdIcons.MdSportsEsports />
             },
             {
                 page: 'Valorant',
-                path: '/',
+                path: '/liga/2',
                 icon: <MdIcons.MdSportsEsports />
             },
             {
                 page: 'CS:GO',
-                path: '/',
+                path: 'liga/3',
                 icon: <MdIcons.MdSportsEsports />
             },
             {
                 page: 'Rainbow Six',
-                path: '/',
+                path: 'liga/4',
                 icon: <MdIcons.MdSportsEsports />
             },
         ]

@@ -16,7 +16,7 @@ function MyPlayers() {
                 <AddPlayers to="/novo-player" style={{ textDecoration: 'none', color: '#FFF' }}>Adicionar Jogador</AddPlayers>
             </TitlePlayer>
             <TabelaJogadores>
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -51,10 +51,10 @@ function MyPlayers() {
                                         {item.deaths}
                                     </td>
                                     <td data-label="Ações" className="acoes">
-                                        <a className="col-md botao-editar">
+                                        <a href="/#" className="col-md botao-editar">
                                             <FiEdit />
                                         </a>
-                                        <a className="col-sm botao-excluir">
+                                        <a href="/#" className="col-sm botao-excluir">
                                             <MdDeleteOutline />
                                         </a>
                                     </td>

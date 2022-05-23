@@ -13,6 +13,7 @@ import { Register, RegisterCard, LoginToCard, ButtonToLogin, RegisterInput, Regi
 export default function RegisterPage() {
 
     const [image, setImage] = useState('');
+    const [imageUrl, setImageUrl] = useState(null);
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -40,7 +41,7 @@ export default function RegisterPage() {
         e.preventDefault();
         try {
             var response = await registerNewTime(email, values.password, nome, image, () => {
-                navigate('/', { replace: true });
+                navigate('/login', { replace: true });
             });
         } catch (error) {
             setErrorMessage(error)
@@ -56,6 +57,12 @@ export default function RegisterPage() {
     }
 
     useEffect(() => { verifyAuth() }, [])
+
+    useEffect(() => {
+        if (image) {
+            setImageUrl(URL.createObjectURL(image));
+        }
+    }, [image]);
 
     return (
         <React.Fragment>
@@ -106,6 +113,7 @@ export default function RegisterPage() {
                         </div>
                         <RegisterLabel>Logo</RegisterLabel>
                         <RegisterInput type={"file"} accept={".png, .jpg, .jpeg"} name={"logo"} onChange={(e) => { setImage(e.target.files[0]) }} />
+                        {/* <img src={imageUrl} alt={image.name} width='150px'/><br /> */}
                         <RegisterButton onClick={register} disabled={loading}>Registrar</RegisterButton>
                     </FormRegister>
                 </RegisterCard>

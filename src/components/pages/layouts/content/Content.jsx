@@ -11,7 +11,6 @@ import { TimeContext } from '../../../../contexts/time/TimeContext';
 
 function Content() {
 
-    
     const { logged } = useContext(TimeContext);
 
     return (

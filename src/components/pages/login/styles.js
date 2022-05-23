@@ -26,10 +26,10 @@ export const FormLogin = styled.form`
 `
 
 export const LoginTitle = styled.h2`
-    padding-top: 8%;
+    padding-top: 5%;
     font-weight: 800;
     font-size: 3rem;
-    padding-bottom: 5%;
+    padding-bottom: 2%;
 
     @media screen and (max-width: 768px){
         font-weight: bold;
@@ -38,6 +38,7 @@ export const LoginTitle = styled.h2`
 `
 
 export const LoginLabel = styled.div`
+    margin-top: 0.5rem;
     padding-bottom: 5px;
     font-weight: 300;
     font-size: 1.5rem;
@@ -55,14 +56,14 @@ export const LoginCard = styled.div`
     flex-direction: column;
     align-items: flex-start;
     justify-content: start;
-
+    
     @media screen and (max-width: 768px){
         height: auto;
         padding: 0 25px 0px;
         width: 100%;
         margin-bottom: 10%;
     }
-`
+    `
 
 export const LoginInput = styled.input`
     width: 100%;
@@ -74,17 +75,32 @@ export const LoginInput = styled.input`
     outline: none;
     font-weight: 400;
     box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.2);
-
+    
     @media screen and (max-width: 768px){
         width: 100%;
     }
+    
+    `
 
+export const ForgotPassword = styled(Link)`
+
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        color: #c5c5c5;
+        text-decoration: none;
+        display: flex;
+
+    &:hover {
+        color: #A2a2a2;
+    }
 `
+
+
 export const LoginButton = styled.input`
     width: 40%;
     border-radius: 10px;
     padding: 10px 20px;
-    margin-top: 38px;
+    margin-top: 2rem;
     background-color: #B7282F;
     color: #FFF;
     text-decoration: none;
@@ -147,3 +163,4 @@ export const ButtonToRegister = styled(Link)`
 
 export const ErrorMessage = styled.div`
 `
+

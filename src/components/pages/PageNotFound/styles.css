@@ -1,0 +1,30 @@
+.error_container {
+    width: 100%;
+    height: 100vh;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.error_container a {
+    text-decoration: none;
+    color: #ac3337;
+    
+    transition: color 200ms ease;
+}
+
+.error_container a:hover {
+    color: #ffffff;
+    
+}
+
+.error_container h1 {
+    font-weight: 800;
+}
+
+.error_container h5 {
+    font-size: 1.2rem;
+    font-weight: 400;
+}

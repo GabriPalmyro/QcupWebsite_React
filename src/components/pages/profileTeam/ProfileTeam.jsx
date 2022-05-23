@@ -55,9 +55,9 @@ export default function ProfileTeam() {
             <MenuPerfil>
                 <MenuTabs>
                     <div className="list-group">
-                        <button onClick={() => { changePage(0) }} className={page == 0 ? classes[1] : classes[0]}>Minhas Ligas</button>
-                        <button onClick={() => { changePage(1) }} className={page == 1 ? classes[1] : classes[0]}>Jogadores</button>
-                        <button onClick={() => { changePage(2) }} className={page == 2 ? classes[1] : classes[0]}>Minha Conta</button>
+                        <button onClick={() => { changePage(0) }} className={page === 0 ? classes[1] : classes[0]}>Minhas Ligas</button>
+                        <button onClick={() => { changePage(1) }} className={page === 1 ? classes[1] : classes[0]}>Jogadores</button>
+                        <button onClick={() => { changePage(2) }} className={page === 2 ? classes[1] : classes[0]}>Minha Conta</button>
                     </div>
                 </MenuTabs>
                 <MenuPages>

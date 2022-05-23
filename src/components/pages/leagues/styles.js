@@ -1,14 +1,13 @@
 import styled from "styled-components"
 
 export const League = styled.div`
-    height: 100%;
+    height: 100vh;
     width: 100%;
     color: white;
     padding-top: 55px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 `
 
 export const LeagueHeader = styled.div`

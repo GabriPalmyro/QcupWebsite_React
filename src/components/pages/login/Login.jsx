@@ -1,21 +1,21 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Login, LoginCard, RegistorToCard, ButtonToRegister, LoginInput, LoginTitle, LoginButton, LoginLabel, FormLogin, ErrorMessage } from './styles';
+import { Login, LoginCard, RegistorToCard, ButtonToRegister, LoginInput, LoginTitle, LoginButton, LoginLabel, FormLogin, ErrorMessage, ForgotPassword } from './styles';
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link} from 'react-router-dom'
 import { TimeContext } from '../../../contexts/time/TimeContext';
 
 export default function LoginPage() {
 
     const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const { logged, loginTime } = useContext(TimeContext);
+    const { time, logged, loginTime } = useContext(TimeContext);
     const navigate = useNavigate()
 
     async function login(e) {
         e.preventDefault();
         try {
-            var response = await loginTime(email, senha, () => {
+            var response = await loginTime(email, password, () => {
                 navigate('/', { replace: true })
             });
             setErrorMessage(response)
@@ -26,7 +26,6 @@ export default function LoginPage() {
 
     async function verifyAuth() {
         await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log(logged)
         if (logged) {
             navigate('/');
         }
@@ -50,7 +49,9 @@ export default function LoginPage() {
                         <LoginLabel>E-mail</LoginLabel>
                         <LoginInput type="text" name="email" onChange={e => setEmail(e.target.value)} />
                         <LoginLabel>Senha</LoginLabel>
-                        <LoginInput type="password" name="password" onChange={e => setSenha(e.target.value)} />
+                        <LoginInput type="password" name="password" onChange={e => setPassword(e.target.value)} />
+                        
+                        <ForgotPassword to='/forgot-password'>Esqueci minha senha</ForgotPassword>
                         <LoginButton type="submit" value={"Entrar"} onClick={login} />
                     </FormLogin>
                 </LoginCard>

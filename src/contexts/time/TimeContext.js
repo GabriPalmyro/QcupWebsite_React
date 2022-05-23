@@ -9,6 +9,8 @@ function TimeProvider({ children }) {
     const [jogadores, setJogadores] = useState([]);
     const [loading, setLoading] = useState(false);
     const [logged, setLogged] = useState(false);
+    const [emailSent, setEmailSent] = useState(false)
+    const [resetPasswordSucess, setResetPasswordSucess] = useState(false)
 
     async function registerNewTime(email, password, nome, logo, voidCallBack) {
         if (logged) {
@@ -20,19 +22,16 @@ function TimeProvider({ children }) {
             try {
                 const response = await api.post(
                     'api/register',
-                    { 'nome': nome, 'email': email, 'senha': password, 'logo': imageUrl })
+                    { 'nome': nome, 'email': email, 'password': password, 'logo': imageUrl })
 
                 if (response.status === 200) {
-                    localStorage.setItem('token', response.data.token);
                     setTime(response.data.time);
-                    setLogged(true);
                     voidCallBack();
                 }
                 setLoading(false);
 
             } catch (error) {
                 setLoading(false);
-                console.log(error.response.data)
                 return error.response.data.message;
             }
             setLoading(false)
@@ -48,31 +47,27 @@ function TimeProvider({ children }) {
             try {
                 const response = await api.post(
                     'api/login',
-                    { 'email': email, 'senha': password })
+                    { 'email': email, 'password': password })
 
                 if (response.status === 200) {
                     localStorage.setItem('token', response.data.token);
                     setTime(response.data.time);
                     setLogged(true)
+                    setLoading(false)
                     voidCallBack()
                 }
-                setLoading(false)
             } catch (error) {
                 setLoading(false)
-                console.log(error.response.data)
                 return error.response.data.message;
             }
-            setLoading(false)
         }
     }
 
     async function logout(token, voidCallBack) {
         setLoading(true)
         try {
-            const response = await api.post(
+            const response = await api.get(
                 'api/logout', {
-                'token': token,
-            }, {
                 headers: {
                     'Authorization': 'Bearer ' + token,
                     'Accept': 'application/json'
@@ -87,8 +82,7 @@ function TimeProvider({ children }) {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            console.log(error.response.data.message);
-            return 'Falha no login, tente novamente.'
+            return 'Falha no logout, tente novamente mais tarde.'
         }
         setLoading(false)
     }
@@ -106,6 +100,7 @@ function TimeProvider({ children }) {
 
             if (response.status === 200) {
                 setTime(response.data.time);
+                localStorage.setItem('token', response.data.token);
                 setLogged(true)
             }
             setLoading(false)
@@ -113,7 +108,6 @@ function TimeProvider({ children }) {
             setLoading(false)
             setLogged(false)
             localStorage.removeItem('token')
-            console.log(error.response.data.message);
             return 'Falha no login, tente novamente.'
         }
         setLoading(false)
@@ -130,6 +124,7 @@ function TimeProvider({ children }) {
                 await refreshData(token);
         } catch (error) {
             console.log(error)
+            return error.response.data;
         }
     }
 
@@ -148,7 +143,6 @@ function TimeProvider({ children }) {
                 }
             })
             if (response.status === 200) {
-                console.log(response.data.jogadores)
                 setJogadores(response.data.jogadores);
             }
             setLoading(false)
@@ -162,7 +156,6 @@ function TimeProvider({ children }) {
     async function addNewPlayer(email, nome, nickname, funcao, voidCallBack) {
         setLoading(true)
         var token = localStorage.getItem('token')
-        console.log(email, nome, nickname, funcao)
         try {
             const response = await api.post(
                 'api/times/novo-jogador', {
@@ -177,9 +170,7 @@ function TimeProvider({ children }) {
                     'Accept': 'application/json'
                 }
             })
-            console.log(response.data)
             if (response.status === 200) {
-                console.log(response.data.message)
                 voidCallBack()
                 return response.data.message;
             } else if (response.status === 422) {
@@ -189,8 +180,6 @@ function TimeProvider({ children }) {
             setLoading(false)
         } catch (error) {
             setLoading(false)
-            console.log(error.response.sta)
-            
             if (error.response.status === 422) {
                 throw error.response.data.erro;
             }
@@ -231,13 +220,83 @@ function TimeProvider({ children }) {
         setLoading(false)
     }
 
+    async function sendEmailToResetPassword(email) {
+        setLoading(true)
+        try {
+            const response = await api.post(
+                'api/forgot-password', {
+                'email': email,
+            })
+            if (response.status === 200) {
+                setLoading(false)
+                setEmailSent(true)
+                return response.data.message;
+            } else if (response.status === 422) {
+                setLoading(false)
+                setEmailSent(false)
+            }
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            setEmailSent(true)
+            return error.response.data.message
+        }
+        setLoading(false)
+    }
+
+    async function resetPassword(email, token, password, confirmPasword, voidCallBack) {
+        if(confirmPasword.length === 0 || password.length === 0) return 'Campos não podem ser vazios.'
+        else if(confirmPasword != password) return 'Senhas precisam ser idênticas.'
+        setLoading(true)
+        try {
+            const response = await api.post(
+                'api/reset-password', {
+                'email': email,
+                'token': token,
+                'password': password,
+                'password_confirmation': confirmPasword
+            })
+            if (response.status === 200) {
+                setLoading(false)
+                setResetPasswordSucess(true)
+                voidCallBack()
+            } else if (response.status === 422) {
+                setLoading(false)
+                setResetPasswordSucess(false)
+                return response.data.message;
+            }
+        } catch (error) {
+            setLoading(false)
+            setResetPasswordSucess(false)
+            return error.response.data.message
+        }
+    }
+
     useEffect(() => {
         login()
     }, [])
 
 
     return (
-        <TimeContext.Provider value={{ time, jogadores, loading, logged, setLogged, registerNewTime, loginTime, logout, refreshData, getPlayers, addNewPlayer, registerToLeague }}>
+        <TimeContext.Provider
+            value={{
+                time,
+                jogadores,
+                loading,
+                logged,
+                emailSent,
+                resetPasswordSucess,
+                setLogged,
+                registerNewTime,
+                loginTime,
+                logout,
+                refreshData,
+                getPlayers,
+                addNewPlayer,
+                registerToLeague,
+                sendEmailToResetPassword,
+                resetPassword
+            }}>
             {children}
         </TimeContext.Provider>
     )

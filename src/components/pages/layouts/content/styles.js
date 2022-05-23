@@ -30,7 +30,7 @@ export const Banner = styled.img`
 
 export const GamesMain = styled.div`
     display: flex;
-    height: 1200px;
+    height: auto;
     width: 100%;
     background-color: #1f1f1f;
     color: #FFF;

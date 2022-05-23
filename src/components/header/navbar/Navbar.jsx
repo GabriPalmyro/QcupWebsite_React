@@ -52,8 +52,8 @@ export default function Navbar(props) {
                             <Link to="login"><Login>Login</Login></Link> / <Link to="register"><Register>Registrar-se</Register></Link>
                         </div>)}
                 </Profile>
-                    <ProfileMobile to={ logged ? "meu-time/" + time.id : ""}>
-                        <BiIcons.BiUser />
+                    <ProfileMobile to={ logged ? "meu-time/" + time.id : "login"}>
+                        <BiIcons.BiUser color="#b82c33"/>
                     </ProfileMobile>
             </HeaderNav>
         </HeaderContainer>
