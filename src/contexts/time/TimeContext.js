@@ -24,11 +24,9 @@ function TimeProvider({ children }) {
                     'api/register',
                     { 'nome': nome, 'email': email, 'password': password, 'logo': imageUrl })
 
-                if (response.status === 200) {
-                    setTime(response.data.time);
-                    voidCallBack();
-                }
+                setTime(response.data.time);
                 setLoading(false);
+                voidCallBack();
 
             } catch (error) {
                 setLoading(false);
@@ -38,7 +36,7 @@ function TimeProvider({ children }) {
         }
     }
 
-    async function loginTime(email, password, voidCallBack) {
+    async function loginTime(email, password, voidCallBack, errorCallBack) {
         if (logged) {
             voidCallBack()
         }
@@ -49,16 +47,23 @@ function TimeProvider({ children }) {
                     'api/login',
                     { 'email': email, 'password': password })
 
-                if (response.status === 200) {
-                    localStorage.setItem('token', response.data.token);
-                    setTime(response.data.time);
-                    setLogged(true)
-                    setLoading(false)
-                    voidCallBack()
-                }
-            } catch (error) {
+                localStorage.setItem('token', response.data.token)
+                setTime(response.data.time)
+                setLogged(true)
                 setLoading(false)
-                return error.response.data.message;
+                voidCallBack()
+            } catch (error) {
+                if (error.response.status === 401) {
+                    setLoading(false)
+                    setLogged(false)
+                    console.log(error.response.data, ' 401 error')
+                    localStorage.setItem('token', error.response.data.token)
+                    errorCallBack()
+                } else {
+                    setLoading(false)
+                    return error.response.data.message;
+                }
+
             }
         }
     }
@@ -114,18 +119,9 @@ function TimeProvider({ children }) {
     }
 
     async function login() {
-        try {
-            var token = localStorage.getItem('token');
-            if (!token || token === null || token === '')
-                console.log("Sem chave armazenada")
-            else if (logged)
-                console.log("Já logado")
-            else
-                await refreshData(token);
-        } catch (error) {
-            console.log(error)
-            return error.response.data;
-        }
+        var token = localStorage.getItem('token');
+        if (token && token !== '')
+            await refreshData(token);
     }
 
     async function getPlayers(id) {
@@ -245,8 +241,8 @@ function TimeProvider({ children }) {
     }
 
     async function resetPassword(email, token, password, confirmPasword, voidCallBack) {
-        if(confirmPasword.length === 0 || password.length === 0) return 'Campos não podem ser vazios.'
-        else if(confirmPasword != password) return 'Senhas precisam ser idênticas.'
+        if (confirmPasword.length === 0 || password.length === 0) return 'Campos não podem ser vazios.'
+        else if (confirmPasword != password) return 'Senhas precisam ser idênticas.'
         setLoading(true)
         try {
             const response = await api.post(
@@ -268,6 +264,35 @@ function TimeProvider({ children }) {
         } catch (error) {
             setLoading(false)
             setResetPasswordSucess(false)
+            return error.response.data.message
+        }
+    }
+
+    async function confirmEmail(email, tokenEmail) {
+        setLoading(true)
+        var token = localStorage.getItem('token');
+        console.log('token: ', token, 'token email: ', tokenEmail, 'email: ', email)
+        try {
+            const response = await api.post(
+                'api/times/confirm-email', {
+                'email': email,
+                'token': tokenEmail
+            }, {
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Accept': 'application/json'
+                }
+            })
+            if (response.status === 200) {
+                setLogged(true)
+                setTime(response.data.time);
+                setLoading(false)
+            }
+        } catch (error) {
+            //mostrar modal
+            setLoading(false)
+            console.log('error')
+            console.log(error.response.data.message)
             return error.response.data.message
         }
     }
@@ -295,7 +320,8 @@ function TimeProvider({ children }) {
                 addNewPlayer,
                 registerToLeague,
                 sendEmailToResetPassword,
-                resetPassword
+                resetPassword,
+                confirmEmail
             }}>
             {children}
         </TimeContext.Provider>

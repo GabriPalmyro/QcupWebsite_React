@@ -34,9 +34,9 @@ function SetNewPassword() {
                     <EmailCard>
                         <LoginLabel>Senha</LoginLabel>
                         <LoginInput type="password" name="password" onChange={e => setPassword(e.target.value)} />
-                        <LoginLabel>Recuperar Senha</LoginLabel>
+                        <LoginLabel>Confirmar Senha</LoginLabel>
                         <LoginInput type="password" name="confirm-password" onChange={e => setConfirmPassword(e.target.value)} /> 
-                        <LoginButton type="submit" value={"Enviar E-mail"} onClick={sendPasswordWithToken} />
+                        <LoginButton type="submit" value={"Recuperar Senha"} onClick={sendPasswordWithToken} />
                         {
                             errorMessage && (<div className="alert alert-danger" role="alert" style={{marginTop: '12px'}}>
                                 {errorMessage}

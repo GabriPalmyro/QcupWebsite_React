@@ -26,6 +26,12 @@ export const SendEmailResetBody = styled.div`
         color: #ababab
     }
 
+    @media screen and (max-width: 768px){
+        text-align: center;
+        justify-content: center;
+        padding: 120px 20px 12px 20px;
+    }
+
 `
 
 export const IconeChave = styled.div`
@@ -41,8 +47,8 @@ export const IconeChave = styled.div`
 `
 
 export const EmailCard = styled.div`
-    min-width: 480px;
-    justify-content: flex-start;
+    min-width: 10%;
+    justify-content: center;
 `
 
 export const LoginLabel = styled.div`

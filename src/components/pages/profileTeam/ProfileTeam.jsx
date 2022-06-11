@@ -37,7 +37,7 @@ export default function ProfileTeam() {
     }
 
     useEffect(() => {
-        // verifyAuth()
+        verifyAuth()
         getPlayers(id)
     }, [])
 

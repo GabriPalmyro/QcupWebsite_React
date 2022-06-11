@@ -28,19 +28,19 @@ function Content() {
                 <Leagues>
                     <h2>LIGAS</h2>
                     <CardsLeagues>
-                        <League to={'liga/1'}>
+                        <League to={'league/1'}>
                             <LeagueLogo src={lolLogo} alt="Logo League Of Legends" />
                             <p>League Of Legends</p>
                         </League>
-                        <League to={'liga/2'}>
+                        <League to={'league/2'}>
                             <LeagueLogo src={csLogo} alt="Logo Counter Strike" />
                                 <p>Counter Strike</p>
                             </League>
-                        <League to={'liga/3'}>
+                        <League to={'league/3'}>
                             <LeagueLogo src={valorantLogo} alt="Logo Valorant" />
                             <p>Valorant</p>
                         </League>
-                        <League to={'liga/4'}>
+                        <League to={'league/4'}>
                             <LeagueLogo src={r6Logo} alt="Logo Rainbow Six Siege"/>
                             <p>Rainbow Six</p>
                         </League>

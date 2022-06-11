@@ -23,7 +23,7 @@ function AddNewPlayer() {
     async function handleSubmit(e) {
         e.preventDefault();
         // try {
-        addNewPlayer(email, nome, nickname, funcao, () => { navigate('/meu-time/' + time.id, { replace: true }) })
+        addNewPlayer(email, nome, nickname, funcao, () => { navigate('/my-team/' + time.id, { replace: true }) })
         .catch((error) => { console.log(error); setErrorMessage(error); limparDados() });
         // } catch (error) {
         // setErrorMessage(error)

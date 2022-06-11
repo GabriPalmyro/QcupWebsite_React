@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Login, LoginCard, RegistorToCard, ButtonToRegister, LoginInput, LoginTitle, LoginButton, LoginLabel, FormLogin, ErrorMessage, ForgotPassword } from './styles';
 
-import { useNavigate, Link} from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { TimeContext } from '../../../contexts/time/TimeContext';
 
 export default function LoginPage() {
@@ -17,6 +17,8 @@ export default function LoginPage() {
         try {
             var response = await loginTime(email, password, () => {
                 navigate('/', { replace: true })
+            }, () => {
+                navigate('/send-confirmation-email')
             });
             setErrorMessage(response)
         } catch (error) {
@@ -50,7 +52,7 @@ export default function LoginPage() {
                         <LoginInput type="text" name="email" onChange={e => setEmail(e.target.value)} />
                         <LoginLabel>Senha</LoginLabel>
                         <LoginInput type="password" name="password" onChange={e => setPassword(e.target.value)} />
-                        
+
                         <ForgotPassword to='/forgot-password'>Esqueci minha senha</ForgotPassword>
                         <LoginButton type="submit" value={"Entrar"} onClick={login} />
                     </FormLogin>

@@ -13,7 +13,7 @@ function MyPlayers() {
         <Jogadores>
             <TitlePlayer>
                 <h1>Seus Jogadores</h1>
-                <AddPlayers to="/novo-player" style={{ textDecoration: 'none', color: '#FFF' }}>Adicionar Jogador</AddPlayers>
+                <AddPlayers to="/new-player" style={{ textDecoration: 'none', color: '#FFF' }}>Adicionar Jogador</AddPlayers>
             </TitlePlayer>
             <TabelaJogadores>
                 <table className="table">
